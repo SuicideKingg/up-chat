@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Up Chat</title>
+    <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
+    <script defer src="app.js"></script>
+</head>
+<style>
+    html{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .user-bubble{
+        background-color: rgb(23, 107, 225);
+        border-radius: 6px;
+        padding: 10px;
+        float: right;
+        color: white;
+        margin: 5px 5px 5px 15px;
+        font-size: 14px;
+    }
+    .recipient-bubble{
+        background-color: rgb(119, 122, 126);
+        border-radius: 6px;
+        padding: 10px;
+        float: left;
+        color: white;
+        font-size: 14px;
+        margin-right: 15px;
+    }
+    .recipient-details{
+        color: rgb(159, 159, 159);
+        float: left;
+        font-size: 12px;
+        margin: 2px;
+    }
+    #messages {
+        display: grid;
+        padding: 10px;
+    }
+    .text-msg{
+        width: 100%;
+        border-radius: 12px;
+        background-color: rgb(225, 225, 225);
+        border: 0px;
+        box-sizing: border-box;
+        padding: 8px;
+    }
+    .main{
+        display: grid;
+        grid-template-columns: 35% 65%;
+        grid-template-rows: 100vh;
+    }
+    .msg-item{
+        align-self: end;
+        padding: 10px;
+        width: inherit;
+    }
+    *{
+        margin: 0;
+    }
+    .joiners-pane{
+        background-color: rgb(61, 61, 226);
+        color: white;
+        padding: 5px;
+    }
+    #list-of-joiners{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .joiner-item{
+        padding: 10px;
+        border-radius: 5px;
+        margin: 5px;
+        background-color: rgb(33, 33, 190);
+    }
+    .welcome-text{
+        text-align: center;
+    }
+    #user-name{
+        text-align: center;
+        font-weight: bold;
+        font-size: 28px;
+    }
+</style>
+<body>
+    <div class="main">
+        <div class="joiners-pane">
+            <div class="welcome-text">
+                Welcome!
+            </div>
+            <div id="user-name"></div>
+            <hr style="margin: 8px;">
+            <ul id="list-of-joiners"></ul>
+        </div>
+        <div class="msg-item">
+            <div id="messages"></div>
+            <form id="messageForm">
+                <input class="text-msg" placeholder="Type message here...">
+            </form>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
