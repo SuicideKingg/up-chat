@@ -1,7 +1,7 @@
 
 const http = require('http').createServer();
 
-// Allow all sources to access this server...
+// Allow all origin to access this server...
 const io = require('socket.io')(http, {
     cors: { origin: "*" }
 });
