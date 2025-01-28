@@ -16,10 +16,10 @@ if(user != null){
     function sendMessage(data){
 
         const el = document.createElement('div');
-        const span = document.createElement('span');
+        const span = document.createElement('div');
 
         const username_date_div = document.createElement('div');
-        const username_date_span = document.createElement('span');
+        const username_date_span = document.createElement('div');
         if(user === data.sender){
             span.className = "user-bubble";
             span.innerHTML = data.message;
@@ -46,9 +46,15 @@ if(user != null){
         list.appendChild(joiner);
     }
 
+    function scrollMessagesToBottom(){
+        const messages_div = document.getElementById("messages-pane");
+        messages_div.scrollTop = messages_div.scrollHeight;
+    }
+
     // Sockets Emitted by the server.
     socket.on('message', data => {
         sendMessage(data);
+        scrollMessagesToBottom();
     });
 
     socket.on('new-user-joined', data => {
@@ -56,6 +62,7 @@ if(user != null){
     });
 
     socket.on('join-chat', data => {
+        console.log('Users', data.users)
         // set the user name
         const div = document.getElementById('user-name');
         div.innerHTML = user;
@@ -69,6 +76,10 @@ if(user != null){
         data.messages.forEach(element => {
             sendMessage(element);
         });
+        
+        //set the scrollbar of messagees div
+        scrollMessagesToBottom();
+
     });
 
     socket.on('remove-user', data=> {
